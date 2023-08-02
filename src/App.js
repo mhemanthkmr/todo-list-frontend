@@ -44,6 +44,24 @@ function App() {
       });
   };
 
+  const toggleComplete = (id) => {
+    axios
+      .put(`${API_BASE_URL}/${id}`, {
+        completed: !todos.find((todo) => todo._id === id).completed,
+      })
+      .then((response) => {
+        const updatedTodo = response.data;
+        setTodos((prevTodos) =>
+          prevTodos.map((todo) =>
+            todo._id === updatedTodo._id ? updatedTodo : todo
+          )
+        );
+      })
+      .catch((error) => {
+        console.error("Error updating todo:", error);
+      });
+  };
+
   return (
     <Container className="mt-5">
       <h1 className="mb-4">Todo List</h1>
@@ -76,7 +94,17 @@ function App() {
             key={todo._id}
             className="d-flex justify-content-between align-items-center"
           >
-            {todo.text}
+            <div>
+              <input
+                className="form-check-input me-4"
+                type="checkbox"
+                checked={todo.completed}
+                onChange={() => toggleComplete(todo._id)}
+              />
+              <span className={todo.completed ? "completed" : ""}>
+                {todo.text}
+              </span>
+            </div>
             <Button
               onClick={() => deleteTodo(todo._id)}
               variant="danger"
