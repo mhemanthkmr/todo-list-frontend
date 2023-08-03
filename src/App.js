@@ -3,7 +3,7 @@ import axios from "axios";
 import { Container, Row, Col, Form, Button, ListGroup } from "react-bootstrap";
 import "./App.css";
 
-const API_BASE_URL = "http://localhost:5000/api/todos";
+const API_BASE_URL = "https://node.mhemanthkmr.live/api/todos";
 
 function App() {
   const [todos, setTodos] = useState([]);
