@@ -23,19 +23,19 @@ The Todo List App is a web-based application that allows users to create, manage
 
 1. Clone the repository:
 
-   ```bash
+   ```
    git clone https://github.com/your-username/todo-list-frontend.git
    ```
 
 2.Navigate to the project directory:
 
-    ```bash
+    ```
     cd todo-list-frontend
     ```
 
 3.Install the required dependencies:
 
-    ```bash
+    ```
     npm install
     ```
 
@@ -43,7 +43,7 @@ The Todo List App is a web-based application that allows users to create, manage
 
 4.Start the development server:
 
-    ```bash
+    ```
     npm start
     ```
 
