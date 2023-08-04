@@ -3,7 +3,7 @@ import axios from "axios";
 import { Container, Row, Col, Form, Button, ListGroup } from "react-bootstrap";
 import "./App.css";
 
-const API_BASE_URL = "https://node.mhemanthkmr.live/api/todos";
+const API_BASE_URL = "https://node.mhemanthkmr.live/api/todos/";
 
 function App() {
   const [todos, setTodos] = useState([]);
@@ -77,11 +77,10 @@ function App() {
           </Col>
           <Col xs={3}>
             <Button
-              type="submit"
               onClick={addTodo}
               variant="primary"
-              block
               disabled={!newTodoText.trim()}
+              type="submit"
             >
               Add Todo
             </Button>
