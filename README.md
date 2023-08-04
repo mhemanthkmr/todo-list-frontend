@@ -2,8 +2,8 @@
   <h1>📝 Todo List App (Frontend) 📝</h1>
   <p>A simple and intuitive Todo List application built using React.js and React Bootstrap.</p>
   <p>
-    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/your-username/todo-list-frontend">
-    <img alt="GitHub license" src="https://img.shields.io/github/license/your-username/todo-list-frontend">
+    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/mhemanthkmr/todo-list-frontend">
+    <img alt="GitHub license" src="https://img.shields.io/github/license/mhemanthkmr/todo-list-frontend">
   </p>
 </div>
 
@@ -26,3 +26,25 @@ The Todo List App is a web-based application that allows users to create, manage
    ```bash
    git clone https://github.com/your-username/todo-list-frontend.git
    ```
+
+2.Navigate to the project directory:
+
+    ```bash
+    cd todo-list-frontend
+    ```
+
+3.Install the required dependencies:
+
+    ```bash
+    npm install
+    ```
+
+-This will install all the necessary packages and dependencies for the Todo List App.
+
+4.Start the development server:
+
+    ```bash
+    npm start
+    ```
+
+-The development server will start, and you can access the Todo List App by opening your web browser and visiting http://localhost:3000.
