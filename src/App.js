@@ -87,6 +87,11 @@ function App() {
 
   return (
     <Container className="mt-5">
+      {alertMessage && (
+        <Alert variant={variant} className="mb-3" dismissible>
+          {alertMessage}
+        </Alert>
+      )}
       <h1 className="mb-4">Todo List</h1>
       <Form className="mb-3">
         <Row>
@@ -96,6 +101,12 @@ function App() {
               value={newTodoText}
               onChange={(e) => setNewTodoText(e.target.value)}
               placeholder="Enter a new todo"
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  e.preventDefault(); // Prevent the default "Enter" key behavior (form submission)
+                  addTodo(); // Call the addTodo function
+                }
+              }}
             />
           </Col>
           <Col xs={3}>
@@ -109,11 +120,6 @@ function App() {
           </Col>
         </Row>
       </Form>
-      {alertMessage && (
-        <Alert variant={variant} className="mb-3" dismissible>
-          {alertMessage}
-        </Alert>
-      )}
       <ListGroup>
         {todos.map((todo) => (
           <ListGroup.Item
