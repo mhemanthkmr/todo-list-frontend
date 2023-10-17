@@ -1,8 +1,23 @@
-import React from "react";
+import auth from "../services/authService";
+import React, { useState } from "react";
 import { Image } from "react-bootstrap";
+import { NavLink } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 // import { Form, Button, Container } from "react-bootstrap";
 
 function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  // async function doSubmit() {
+  //   try {
+  //     const e = email;
+  //     const p = password;
+  //     await auth.login(e, p);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }
+  if (auth.getCurrentUser()) return <Navigate to="/" />;
   return (
     <section className="vh-100">
       <div className="container-fluid h-custom">
@@ -14,7 +29,19 @@ function Login() {
             ></Image>
           </div>
           <div className="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-            <form>
+            <form
+              onSubmit={async (e) => {
+                e.preventDefault();
+                try {
+                  const e = email;
+                  const p = password;
+                  console.log(e, p);
+                  await auth.login(e, p);
+                } catch (error) {
+                  console.log(error);
+                }
+              }}
+            >
               <div className="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
                 <p className="lead fw-normal mb-0 me-3">Sign in with</p>
                 <button
@@ -50,6 +77,9 @@ function Login() {
                   class="form-control"
                   id="floatingInput"
                   placeholder="name@example.com"
+                  onChange={(e) => {
+                    setEmail(e.target.value);
+                  }}
                 />
                 <label for="floatingInput">Email address</label>
               </div>
@@ -60,6 +90,9 @@ function Login() {
                   class="form-control"
                   id="floatingPassword"
                   placeholder="Password"
+                  onChange={(e) => {
+                    setPassword(e.target.value);
+                  }}
                 />
                 <label for="floatingPassword">Password</label>
                 <i
@@ -105,7 +138,7 @@ function Login() {
 
               <div className="text-center text-lg-center mt-4 pt-2">
                 <button
-                  type="button"
+                  type="submit"
                   className="btn btn-primary"
                   style={{ padding: ".50rem 1.5rem" }}
                 >
@@ -113,9 +146,9 @@ function Login() {
                 </button>
                 <p className="medium fw-bold mt-2 pt-1 mb-0">
                   Don't have an account?{" "}
-                  <a href="#!" className="link-primary">
+                  <NavLink className="text-primary" to="/register">
                     Register
-                  </a>
+                  </NavLink>
                 </p>
               </div>
             </form>
