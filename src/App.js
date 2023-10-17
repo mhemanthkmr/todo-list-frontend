@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Navigate } from "react-router-dom";
 import axios from "axios";
 import {
   Container,
@@ -10,6 +11,7 @@ import {
   Alert,
 } from "react-bootstrap";
 import "./App.css";
+import auth from "./services/authService";
 
 const API_BASE_URL = "http://localhost:5000/api/todos/";
 
@@ -18,18 +20,18 @@ function App() {
   const [newTodoText, setNewTodoText] = useState("");
   const [alertMessage, setAlertMessage] = useState("");
   const [variant, setVariant] = useState("");
-
   useEffect(() => {
     axios
-      .get(API_BASE_URL)
+      .get(API_BASE_URL + "/me/todos")
       .then((response) => {
         setTodos(response.data);
+        console.log(response.data);
       })
       .catch((error) => {
         console.error("Error fetching todos:", error);
       });
   }, []);
-
+  if (auth.getCurrentUser() === null) return <Navigate to="/login" />;
   const addTodo = () => {
     if (!newTodoText.trim()) return;
 
@@ -84,7 +86,6 @@ function App() {
         setVariant("danger");
       });
   };
-
   return (
     <Container className="mt-5">
       {alertMessage && (
@@ -92,7 +93,7 @@ function App() {
           {alertMessage}
         </Alert>
       )}
-      <h1 className="mb-4">Todo List</h1>
+      <h1 className="mb-4">{auth.getCurrentUser().name} Todo List</h1>
       <Form className="mb-3">
         <Row>
           <Col xs={9}>
