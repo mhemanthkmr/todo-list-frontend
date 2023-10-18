@@ -15,6 +15,7 @@ http.setJwt(getJwt());
 
 function logout() {
   localStorage.removeItem(tokenKey);
+  window.location = "/";
 }
 
 async function login(email, password) {
