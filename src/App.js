@@ -13,7 +13,7 @@ import {
 import "./App.css";
 import auth from "./services/authService";
 
-const API_BASE_URL = "http://localhost:5000/api/todos/";
+const API_BASE_URL = "https://node.mhemanthkmr.live/api/todos/";
 
 function App() {
   const [todos, setTodos] = useState([]);
@@ -25,7 +25,6 @@ function App() {
       .get(API_BASE_URL + "/")
       .then((response) => {
         setTodos(response.data);
-        console.log(response.data);
       })
       .catch((error) => {
         console.error("Error fetching todos:", error);
@@ -72,7 +71,6 @@ function App() {
       })
       .then((response) => {
         const updatedTodo = response.data;
-        console.log(updatedTodo);
         setTodos((prevTodos) =>
           prevTodos.map((todo) =>
             todo._id === updatedTodo._id ? updatedTodo : todo
@@ -88,13 +86,27 @@ function App() {
       });
   };
   return (
-    <Container className="mt-5">
+    <Container className="mt-3">
       {alertMessage && (
         <Alert variant={variant} className="mb-3" dismissible>
           {alertMessage}
         </Alert>
       )}
-      <h1 className="mb-4">{auth.getCurrentUser().name} Todo List</h1>
+      <div className="d-flex flex-row justify-content-between align-items-center space-between">
+        <div className="">
+          <h1 className="mb-4">{auth.getCurrentUser().name} Todo List</h1>
+        </div>
+        <div className="float-end mb-3">
+          <Button
+            onClick={() => {
+              auth.logout();
+            }}
+            variant="danger"
+          >
+            Logout
+          </Button>
+        </div>
+      </div>
       <Form className="mb-3">
         <Row>
           <Col xs={9}>
