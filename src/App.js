@@ -22,7 +22,7 @@ function App() {
   const [variant, setVariant] = useState("");
   useEffect(() => {
     axios
-      .get(API_BASE_URL + "/me/todos")
+      .get(API_BASE_URL + "/")
       .then((response) => {
         setTodos(response.data);
         console.log(response.data);
@@ -72,6 +72,7 @@ function App() {
       })
       .then((response) => {
         const updatedTodo = response.data;
+        console.log(updatedTodo);
         setTodos((prevTodos) =>
           prevTodos.map((todo) =>
             todo._id === updatedTodo._id ? updatedTodo : todo
